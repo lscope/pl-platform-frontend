@@ -10,10 +10,7 @@
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [
-	// 	5173, // npm run dev port
-	// 	5500 // live server port
-	// ],
+	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "npm install",
@@ -29,7 +26,20 @@
 				"ritwickdey.LiveServer"
 			],
 			"settings": {
-				"editor.wordWrap": "on"
+				"editor.wordWrap": "on",
+				"[typescriptreact]": {
+					"editor.tabSize": 2
+				},
+				"[json]": {
+					"editor.tabSize": 2
+				},
+				"[jsonc]": {
+					"editor.quickSuggestions": {
+						"strings": true
+					},
+					"editor.suggest.insertMode": "replace",
+					"editor.tabSize": 2
+				}
 			}
 		}
 	}

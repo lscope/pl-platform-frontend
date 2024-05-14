@@ -23,7 +23,8 @@
 				"dbaeumer.vscode-eslint",
 				"ecmel.vscode-html-css",
 				"esbenp.prettier-vscode",
-				"ritwickdey.LiveServer"
+				"ritwickdey.LiveServer",
+				"bradlc.vscode-tailwindcss"
 			],
 			"settings": {
 				"editor.wordWrap": "on",

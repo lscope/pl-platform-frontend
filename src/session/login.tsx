@@ -1,6 +1,8 @@
 import { Form, json, redirect, useActionData } from "react-router-dom"
 import axios, { AxiosResponse } from "axios"
 import { jwtDecode } from "jwt-decode"
+import React from "react"
+import "../index.css"
 
 
 
@@ -62,37 +64,47 @@ const action = async ({ request }): Promise<Response> => {
 	}
 }
 
-const Login = () => {
+const Login: React.FC = () => {
 	const actionData: Response = useActionData() as Response
 
 	return (
-		<>
+		<div>
 			<h1>Login</h1>
 			<Form method="post">
-				<label>
-					Email:
-					<input
-						type="email"
-						name="email"
-						required
-						autoFocus
-						placeholder="example@email.com"
-					/>
-				</label>
-				<label>
-					Password:
-					<input
-						type="password"
-						name="password"
-						required
-						placeholder="password"
-					/>
-				</label>
-				<button>Login</button>
+				<div>
+					<label>
+						Email:
+						<input
+							type="email"
+							name="email"
+							required
+							autoFocus
+							placeholder="example@email.com"
+						/>
+					</label>
+				</div>
+				<div>
+					<label>
+						Password:
+						<input
+							type="password"
+							name="password"
+							required
+							placeholder="password"
+						/>
+					</label>
+				</div>
+				<div>
+					<button>
+						Login
+					</button>
+				</div>
 			</Form>
-		</>
+		</div>
 	)
 }
+
+
 
 
 export default Login

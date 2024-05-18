@@ -1,7 +1,12 @@
+import React from "react"
 import { useLoaderData } from "react-router-dom"
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios"
-import { User } from "./SignUp"
-
+import { User } from "../session/SignUp"
+import UserCard from "./userCard"
+import LiftCard from "./liftCard"
+import TotalCard from "./totalCard"
+import NavBar from "./navbar"
+import "../index.css"
 
 
 
@@ -55,42 +60,34 @@ const loader = async (): Promise<LiftResponse | Response> => {
 	}
 }
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
 		const { responseSquat, responseBench, responseDeadlift } = useLoaderData() as LiftResponse
 
 		const getMaxWeight = (maxWeight: number, current: Lift): number => {
 			return current.weight > maxWeight ? current.weight : maxWeight
 		}
 
-		const squat: number | null = responseSquat ? responseSquat.reduce(getMaxWeight, responseSquat[0].weight) : null
-		const benchPress: number | null = responseBench ? responseBench.reduce(getMaxWeight, responseBench[0].weight) : null
-		const deadlift: number | null = responseDeadlift ? responseDeadlift.reduce(getMaxWeight, responseDeadlift[0].weight) : null
+		// Controllo se ho almeno un'alzata x.lenght > 0
+		const squat: number | null = responseSquat.length > 0 ? responseSquat.reduce(getMaxWeight, responseSquat[0].weight) : null
+		const benchPress: number | null = responseBench.length > 0 ? responseBench.reduce(getMaxWeight, responseBench[0].weight) : null
+		const deadlift: number | null = responseDeadlift.length > 0 ? responseDeadlift.reduce(getMaxWeight, responseDeadlift[0].weight) : null
 		const total: number = (squat ? squat : 0) + (benchPress ? benchPress : 0) + (deadlift ? deadlift : 0)
 
 		return (
+			<div>
+				<NavBar />
 				<div>
-					<div className="navbar">
-						{/* pulsante home */}
-						{/* Pulsante profilo */}
+					<div>
+						<UserCard />
+						<TotalCard total={total} />
 					</div>
-					<div className="body">
-						<div className="main">
-							<img/>
-							<div className="prs"></div>
-						</div>
-						<div className="sidebar">
-							<ul>
-								<li key="1">Allenamenti</li>
-								<li key="2">Statistiche</li>
-							</ul>
-						</div>
-						<div className="button">
-							<button>
-								add weight
-							</button>
-						</div>
+					<div>
+						<LiftCard lift="Squat" weight={squat} />
+						<LiftCard lift="Bench Press" weight={benchPress} />
+						<LiftCard lift="Deadlift" weight={deadlift} />
 					</div>
 				</div>
+			</div>
 		)
 }
 

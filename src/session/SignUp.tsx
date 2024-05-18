@@ -1,6 +1,8 @@
 import { Form, redirect, json, useActionData } from "react-router-dom"
 import axios, { AxiosResponse } from "axios"
 import { Token, loginRequest, storeCredentials } from "./login"
+import React from "react"
+import "../index.css"
 
 
 
@@ -46,37 +48,46 @@ const action = async ({ request }) => {
 	}
 }
 
-const SignUp = () => {
+const SignUp: React.FC = () => {
 	const actionData: Response = useActionData() as Response
 
 	return (
-		<>
+		<div>
 			<h1>Sign Up</h1>
 			<Form method="post">
-				<label>
-					Email:
-					<input
-						type="email"
-						name="email" // nome dell'attributo acceduto nella funzione action
-						required
-						autoFocus
-						placeholder="example@email.com"
-					/>
-				</label>
-				<label>
-					Password:
-					<input
-						type="password"
-						name="password" // nome dell'attributo acceduto nella funzione action
-						required
-						placeholder="Password.123"
-					/>
-				</label>
-				<button>Sign-up</button>
+				<div>
+					<label>
+						Email:
+						<input
+							type="email"
+							name="email"
+							required
+							autoFocus
+							placeholder="example@email.com"
+						/>
+					</label>
+				</div>
+				<div>
+					<label>
+						Password:
+						<input
+							type="password"
+							name="password"
+							required
+							placeholder="Password.123"
+						/>
+					</label>
+				</div>
+				<div>
+					<button>
+						Sign Up
+					</button>
+				</div>
 			</Form>
-		</>
+		</div>
 	)
 }
+
 
 export default SignUp
 export { action }

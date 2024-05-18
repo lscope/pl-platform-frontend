@@ -1,16 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import "./index.css"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from "./home"
-import HomePage, { loader as homePageLoader } from "./homePage"
-import Login, { action as loginAction } from './login'
-import SignUp, { action as signUpAction } from './SignUp'
+import UnloggedHome from "./unloggedHome"
+import HomePage, { loader as homePageLoader } from "./homePage/homePage"
+import Login, { action as loginAction } from './session/login'
+import SignUp, { action as signUpAction } from './session/SignUp'
 
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Home />,
+		element: <UnloggedHome />,
 	},
 	{
 		path: "/login",
